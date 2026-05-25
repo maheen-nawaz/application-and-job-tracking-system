@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOBIFY PRO | Complete Ecosystem</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* ---------- ALL YOUR ORIGINAL STYLES KEPT EXACTLY ---------- */
+        :root { --primary-dark: #1e293b; --accent-blue: #38bdf8; --bg-light: #f8fafc; --accent-indigo: #6366f1; --success-emerald: #10b981; --danger-red: #ef4444; --admin-bg: #0f172a; --secondary: #334155; --accent: #0ea5e9; --glass: rgba(255,255,255,0.9); --border: #cbd5e1; }
+        body { font-family: 'Segoe UI', system-ui, 'Inter', sans-serif; background: var(--bg-light); color: var(--primary-dark); scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* Landing specific */
+        .navbar { background: white; padding: 15px 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .mission-container { background: white; border-left: 6px solid var(--accent-blue); border-radius: 12px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 50px; }
+        .mission-container h2 { font-weight: 800; color: #0f172a; margin-bottom: 25px; }
+        .mission-container p { color: #64748b; line-height: 1.8; font-size: 1.1rem; }
+        .dev-tag { background: #1e293b; color: white; padding: 8px 15px; border-radius: 6px; display: inline-block; font-weight: 600; font-size: 0.9rem; }
+        .hero { height: 100vh; width: 100%; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1500'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .auth-card { background: white; border-radius: 15px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .input-group-text { background: white; border-left: none; cursor: pointer; color: #64748b; }
+        .password-field { border-right: none; }
+        .error-text { color: #ef4444; font-size: 0.75rem; display: none; margin-top: 4px; }
+        .is-invalid { border-color: #ef4444 !important; }
+        .btn-valid { background-color: #22c55e !important; }
+        #enterBtn { background-color: #64748b; border: none; color: white; font-weight: bold; transition: 0.3s; }
+
+        /* Admin panel specific */
+        .admin-sidebar { background: var(--admin-bg); color: white; border-radius: 12px; padding: 20px; min-height: 450px; }
+        .admin-nav-item { padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-bottom: 8px; opacity: 0.7; }
+        .admin-nav-item:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+        .admin-nav-item.active { background: #ef4444; color: white; font-weight: bold; opacity: 1; }
+        .list-item { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 10px; transition: 0.2s; }
+        .cursor-pointer { cursor: pointer; }
+
+        /* Applicant panel specific */
+        .sidebar-menu { list-style: none; padding: 0; margin-top: 20px; }
+        .sidebar-menu li { padding: 12px 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 5px; color: #64748b; display: flex; justify-content: space-between; align-items: center; }
+        .sidebar-menu li:hover { background: #f1f5f9; }
+        .sidebar-menu li.active-link { background: var(--primary-dark); color: white; }
+        .notification-badge { background: var(--danger-red); color: white; font-size: 11px; padding: 2px 7px; border-radius: 50px; font-weight: bold; }
+        .search-container { max-width: 500px; margin-bottom: 25px; }
+        .search-input-group { background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; }
+        .search-input-group input { border: none; outline: none; width: 100%; padding: 5px; font-size: 13px; }
+        .search-input-group i { color: #94a3b8; margin-right: 8px; }
+        .job-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; height: 100%; }
+        .job-card img { width: 100%; height: 150px; object-fit: cover; }
+        .job-card-body { padding: 20px; }
+        .btn-apply { background: var(--primary-dark); color: white; width: 100%; border-radius: 6px; padding: 10px; font-weight: 600; border: none; }
+        .tracking-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; overflow: hidden; border-left: 5px solid #cbd5e1; }
+        .tracking-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .status-badge { font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; }
+        .status-hired { background: #dcfce7; color: #166534; }
+        .status-interview { background: #e0e7ff; color: #3730a3; }
+        .status-applied { background: #f1f5f9; color: #475569; }
+        .status-shortlisted { background: #dcfce7; color: #166534; }
+        .status-rejected { background: #fee2e2; color: #991b1b; }
+        .message-bar { background: #f1f5f9; padding: 10px 20px; display: flex; gap: 10px; border-top: 1px solid #e2e8f0; }
+        .message-bar input { border-radius: 6px; border: 1px solid #cbd5e1; flex-grow: 1; padding: 5px 12px; font-size: 13px; }
+        .modal-job-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+
+        /* Employer panel specific */
+        .sidebar { background: var(--primary-dark); border-right: 1px solid var(--secondary); height: 100vh; position: fixed; width: 260px; padding: 30px 15px; z-index: 100; color: white; }
+        .nav-link-custom { display: flex; align-items: center; padding: 12px 15px; border-radius: 10px; color: #94a3b8; text-decoration: none; margin-bottom: 6px; cursor: pointer; transition: 0.3s; font-weight: 500; font-size: 13.5px; }
+        .nav-link-custom:hover { background: var(--secondary); color: white; }
+        .nav-link-custom.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
+        .main-content { margin-left: 260px; padding: 40px; min-height: 100vh; }
+        .page-section { display: none; animation: slideUp 0.4s ease-out; }
+        .page-section.active-page { display: block; }
+        .job-header { padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; transition: 0.2s; }
+        .job-header h5 { font-size: 15px; margin: 0; }
+        .app-table { width: 100%; border-top: 1px solid var(--border); background: #fafafa; font-size: 13px; }
+        .app-row td { padding: 15px 24px; vertical-align: middle; border-bottom: 1px solid #edf2f7; }
+        .btn-action { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 7px 14px; border-radius: 7px; border: 1px solid var(--border); transition: 0.2s; cursor: pointer; }
+        .btn-shortlist { color: #0f172a; background: #e2e8f0; }
+        .btn-shortlist:hover { background: var(--accent); color: white; border-color: var(--accent); }
+        .btn-view-cv { font-size: 12.5px; color: var(--accent); font-weight: 600; text-decoration: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 5px; background: none; cursor: pointer; }
+        .btn-view-cv:hover { border-color: var(--accent); background: #f0f9ff; }
+        .dm-box { background: white; border: 1px solid var(--accent); border-radius: 10px; padding: 15px; margin: 10px 24px 20px 24px; }
+        .reminder-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+        .reminder-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-right: 15px; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Tab & section generic */
+        .tab-content { display: none; }
+        .active-tab { display: block !important; animation: fadeIn 0.4s; }
+        .app-section { display: none; padding: 30px 0; }
+        .active-section { display: block !important; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Toast notifications */
+        #toast-box { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast-msg { background: #1e293b; color: white; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease; min-width: 260px; }
+        .toast-msg.success { border-left: 4px solid #22c55e; }
+        .toast-msg.error { border-left: 4px solid #ef4444; }
+        .toast-msg.info { border-left: 4px solid #38bdf8; }
+
+        /* Loader */
+        #global-loader { position: fixed; inset: 0; background: rgba(255,255,255,0.85); z-index: 8888; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+        .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; }
+        .empty-state i { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+
+        /* Message bubbles */
+        .message-bubble { padding: 8px 14px; border-radius: 10px; margin-bottom: 8px; max-width: 80%; font-size: 13px; }
+        .message-bubble.mine { background: #1e293b; color: white; margin-left: auto; }
+        .message-bubble.theirs { background: #e2e8f0; color: #1e293b; }
+    </style>
+</head>
+<body>
+
+<!-- TOAST BOX -->
+<div id="toast-box"></div>
+
+<!-- LOADER -->
+<div id="global-loader">
+    <div class="spinner-border text-primary" style="width:3rem;height:3rem;"></div>
+    <span class="text-muted">Loading...</span>
+</div>
+
+<!-- ======================= LANDING PAGE (your original design kept) ======================= -->
+<nav class="navbar d-flex justify-content-between">
+    <div class="logo" style="font-weight: 800; font-size: 1.4rem;">JOBIFY<span style="color:var(--accent-blue)">PRO</span></div>
+    <button class="btn btn-dark btn-sm px-3" onclick="scrollToAuth()">Maheen Nawaz</button>
+</nav>
+
+<div id="landing-page" class="app-section active-section">
+    <section class="hero">
+        <h1 style="font-size: 4.5rem; font-weight: 800;">Build Your Future</h1>
+        <p style="font-size: 1.4rem; opacity: 0.9;">Professional Job Portal & Real-time Application Tracking</p>
+        <button class="btn btn-info btn-lg mt-4 px-5 text-white fw-bold shadow" onclick="scrollToAuth()">Access Portal</button>
+    </section>
+
+    <div class="container py-5" id="auth-section">
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="auth-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 id="auth-title">Sign In</h3>
+                        <button class="btn btn-sm btn-link text-decoration-none" onclick="toggleAuthMode()" id="toggleBtn">Don't have an account? Sign up</button>
+                    </div>
+                    <div class="row">
+                        <!-- SIGNUP ONLY -->
+                        <div class="col-md-6 mb-3 d-none signup-only">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="fName" placeholder="e.g. Maheen">
+                            <small class="error-text" id="err-fName">First name is required</small>
+                        </div>
+                        <div class="col-md-6 mb-3 d-none signup-only">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lName" placeholder="e.g. Nawaz">
+                            <small class="error-text" id="err-lName">Last name is required</small>
+                        </div>
+                        <div class="col-md-6 mb-3 d-none signup-only">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="user@uet.edu">
+                            <small class="error-text" id="err-email">Valid email required</small>
+                        </div>
+                        <div class="col-md-6 mb-3 d-none signup-only">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="userPhone" placeholder="03XXXXXXXXX">
+                            <small class="error-text" id="err-phone">Must be 11 digits</small>
+                        </div>
+
+                        <!-- LOGIN FIELDS -->
+                        <div class="col-md-6 mb-3" id="login-email-box">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="you@email.com">
+                            <small class="error-text" id="err-loginEmail">Email is required</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control password-field" id="userPass" oninput="analyzePassword(this.value)">
+                                <span class="input-group-text" onclick="togglePass()"><i class="bi bi-eye-slash" id="eyeIcon"></i></span>
+                            </div>
+                            <div id="pass-strength" style="height:4px; margin-top:5px; border-radius:5px; background: #e2e8f0; display:none;"></div>
+                            <small class="error-text" id="err-pass">Need Capital, Small, Number, Special (Min 8)</small>
+                            <small class="error-text" id="err-pass-login">Login: Minimum 8 characters</small>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Account Type</label>
+                        <select class="form-select" id="userRole">
+                            <option value="applicant">Applicant</option>
+                            <option value="employer">Employer</option>
+                        </select>
+                    </div>
+                    <button class="btn w-100 py-3" id="enterBtn" onclick="processAuth()">Enter System</button>
+                </div>
+            </div>
+
+            <!-- ADMIN CARD - your original design -->
+            <div class="col-md-4">
+                <div class="auth-card text-center bg-light border-dashed h-100 d-flex flex-column justify-content-center">
+                    <i class="bi bi-shield-lock-fill text-danger" style="font-size: 50px;"></i>
+                    <h4 class="mt-3">Root Admin</h4>
+                    <input type="password" class="form-control mb-2 mt-3" id="adminKeyInput" placeholder="Enter Admin Key">
+                    <button class="btn btn-outline-danger w-100 mt-2" onclick="adminAuth()">Verify Admin</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- YOUR ORIGINAL MISSION SECTION -->
+        <div class="mission-container">
+            <h2>Our Mission</h2>
+            <p>Developed for the <strong>OOP Lab Project</strong>, <strong>Jobify Pro</strong> is a high-performance bridge between emerging talent and industry leaders. Inspired by the vision of professional excellence at institutions like <strong>UET</strong>, we provide a unified ecosystem for application management and real-time recruitment tracking. <br><br> By leveraging <strong>Object-Oriented Design</strong> and <strong>Secure SQL Architecture</strong>, we transform the hiring experience into a seamless, digital journey—empowering the next generation of professionals to lead with confidence.</p>
+            <div class="dev-tag mt-3">Developer: Maheen Nawaz (2025-CYS-63)</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================= ADMIN PANEL (your original layout) ======================= -->
+<div id="admin-dash" style="display: none;" class="app-section">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="admin-sidebar shadow-lg">
+                    <h4 class="text-danger mb-4 fw-bold"><i class="bi bi-cpu-fill me-2"></i>Admin CP</h4>
+                    <div class="admin-nav-item active" onclick="switchTabAdmin('adm-main', this)">Management</div>
+                    <div class="admin-nav-item" onclick="switchTabAdmin('adm-logs', this)">Activity Logs</div>
+                    <div class="admin-nav-item" onclick="switchTabAdmin('adm-settings', this)">System Settings</div>
+                    <hr class="bg-secondary">
+                    <button class="btn btn-outline-light w-100" onclick="logout()">Exit Admin</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <!-- MANAGEMENT TAB - now loads real data -->
+                <div id="adm-main" class="tab-content active-tab">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="auth-card text-center cursor-pointer" onclick="loadAdminUsers('applicant')">
+                                <h5>Applicants</h5>
+                                <i class="bi bi-people h1 text-primary"></i>
+                                <p class="fw-bold mt-2" id="stat-applicants">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="auth-card text-center cursor-pointer" onclick="loadAdminUsers('employer')">
+                                <h5>Employers</h5>
+                                <i class="bi bi-building h1 text-success"></i>
+                                <p class="fw-bold mt-2" id="stat-employers">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="auth-card text-center cursor-pointer" onclick="loadAdminUsers('jobs')">
+                                <h5>Active Jobs</h5>
+                                <i class="bi bi-briefcase h1 text-warning"></i>
+                                <p class="fw-bold mt-2" id="stat-jobs">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="admin-list-area" class="mt-4"></div>
+                </div>
+
+                <!-- LOGS TAB -->
+                <div id="adm-logs" class="tab-content">
+                    <h4 class="fw-bold mb-4">Activity Logs</h4>
+                    <div id="logs-container" style="font-family: monospace; font-size: 12px; background: #0f172a; color: #94a3b8; padding: 20px; border-radius: 10px; max-height: 500px; overflow-y: auto;">Loading logs...</div>
+                </div>
+
+                <!-- SETTINGS TAB - your original design -->
+                <div id="adm-settings" class="tab-content">
+                    <h3 class="fw-bold mb-4">Security & Oversight</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="auth-card">
+                                <h5>Admin Access PIN</h5>
+                                <input type="text" class="form-control mt-3" id="newAdminKey" placeholder="New PIN">
+                                <button class="btn btn-danger w-100 mt-2" onclick="showToast('Update ADMIN_KEY in your .env file', 'info')">Update Access</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="auth-card">
+                                <h5 class="text-danger">Blocked Users</h5>
+                                <div id="blocked-list" class="mt-3"><p class="text-muted small">Clean slate.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================= APPLICANT PANEL (your original layout) ======================= -->
+<div id="applicant-dash" style="display: none;" class="app-section">
+    <nav class="navbar d-flex justify-content-between align-items-center">
+        <div class="logo">JOBIFY<span style="color:var(--accent-indigo)">PRO</span></div>
+        <div class="d-flex align-items-center gap-3">
+            <span class="fw-medium" id="app-user-name">—</span>
+            <div id="app-avatar" style="width: 32px; height: 32px; background: #475569; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">?</div>
+        </div>
+    </nav>
+    <div class="container py-4">
+        <div class="row g-4">
+            <div class="col-lg-3">
+                <div class="auth-card">
+                    <div class="text-center mb-4">
+                        <p class="text-muted small mb-1">Logged in as</p>
+                        <h6 class="fw-bold" id="app-user-email-display">—</h6>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="active-link" onclick="switchApplicantTab('app-jobs', this)"><span><i class="bi bi-grid-fill me-2"></i> Find Jobs</span></li>
+                        <li onclick="switchApplicantTab('app-applied', this)"><span><i class="bi bi-send-fill me-2"></i> Application Tracking</span></li>
+                        <li onclick="switchApplicantTab('app-reminders', this)">
+                            <span><i class="bi bi-bell-fill me-2"></i> Reminders</span>
+                            <span class="notification-badge" id="reminder-badge">0</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline-danger w-100 mt-4 py-2 small fw-bold" onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <!-- FIND JOBS TAB -->
+                <div id="app-jobs" class="tab-content active-tab">
+                    <h5 class="fw-bold mb-3">Available Opportunities</h5>
+                    <div class="search-container">
+                        <div class="search-input-group">
+                            <i class="bi bi-search"></i>
+                            <input type="text" placeholder="Search jobs..." id="jobSearch" oninput="filterJobs(this.value)">
+                        </div>
+                    </div>
+                    <!-- Jobs load here from database -->
+                    <div class="row g-3" id="job-container">
+                        <div class="empty-state col-12"><i class="bi bi-hourglass-split"></i>Loading jobs...</div>
+                    </div>
+                </div>
+
+                <!-- APPLICATION TRACKING TAB -->
+                <div id="app-applied" class="tab-content">
+                    <h5 class="fw-bold mb-4">Application Progress</h5>
+                    <!-- Applications load here from database -->
+                    <div id="applications-container">
+                        <div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>
+                    </div>
+                </div>
+
+                <!-- REMINDERS TAB -->
+                <div id="app-reminders" class="tab-content">
+                    <h5 class="fw-bold mb-4">Upcoming Events</h5>
+                    <!-- Reminders load here from database -->
+                    <div id="reminders-container">
+                        <div class="empty-state"><i class="bi bi-calendar-x"></i>No upcoming interviews</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Applicant Modal - your original design + real apply -->
+<div class="modal fade" id="jobModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="fw-bold m-0" id="modalTitle">Job Title</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImg" src="" class="modal-job-img">
+                <h6 id="modalCompany" class="text-primary fw-bold mb-1"></h6>
+                <p class="small text-muted mb-1" id="modalCategory"></p>
+                <p class="small text-muted mb-1" id="modalSalary"></p>
+                <p class="small mb-3" id="modalDesc"></p>
+                <p class="small fw-bold mb-1">Required Skills:</p>
+                <p class="small text-muted mb-3" id="modalSkills"></p>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Cover Letter (optional)</label>
+                    <textarea class="form-control" id="coverLetter" rows="3" placeholder="Why are you a good fit?"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Upload Resume (optional)</label>
+                    <input type="file" class="form-control" id="resumeFile" accept=".pdf,.doc,.docx">
+                </div>
+                <button class="btn btn-primary w-100 py-2 fw-bold" id="applyBtn" onclick="submitApplication()">Confirm Application</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================= EMPLOYER PANEL (your original layout) ======================= -->
+<div id="employer-dash" style="display: none;" class="app-section">
+    <div class="sidebar">
+        <div class="mb-5 px-2">
+            <h4 class="fw-bold m-0"><i class="bi bi-shield-check text-info me-2"></i>JOBIFY<span class="text-info">PRO</span></h4>
+            <p class="text-muted small mt-1 mb-0" id="emp-user-name">—</p>
+        </div>
+        <div class="nav-link-custom active" onclick="switchEmployerPage('page-jobs', this)"><i class="bi bi-briefcase me-3"></i> Active Jobs</div>
+        <div class="nav-link-custom" onclick="switchEmployerPage('page-post', this)"><i class="bi bi-file-earmark-plus me-3"></i> Post Vacancy</div>
+        <div class="nav-link-custom" onclick="switchEmployerPage('page-reminders', this)"><i class="bi bi-clock-history me-3"></i> Reminders</div>
+        <div class="mt-auto pt-5">
+            <div class="nav-link-custom text-danger" onclick="logout()"><i class="bi bi-power me-3"></i> Sign Out</div>
+        </div>
+    </div>
+    <div class="main-content">
+        <!-- ACTIVE JOBS PAGE - loads real applicants -->
+        <div id="page-jobs" class="page-section active-page">
+            <h3 class="fw-bold mb-4">Job Management</h3>
+            <div id="employer-jobs-container">
+                <div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading your jobs...</div>
+            </div>
+        </div>
+
+        <!-- POST VACANCY - your original form -->
+        <div id="page-post" class="page-section">
+            <div class="bg-white p-4 p-md-5 rounded-4 border shadow-sm">
+                <h4 class="fw-bold mb-4">Post New Vacancy</h4>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <input type="text" class="form-control py-2" id="jobTitle" placeholder="Job Title (e.g. Senior Java Developer)">
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select py-2" id="jobCategory">
+                            <option value="Engineering">Engineering</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Design">Design</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="Data Science">Data Science</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control py-2" id="jobSalary" placeholder="Salary Range">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control py-2" id="jobSkills" placeholder="Required Skills (e.g. Java, SQL, OOP)">
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" rows="4" id="jobDesc" placeholder="Job Responsibilities..."></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-dark w-100 py-2 fw-bold" onclick="postJob()">Publish to Jobify Board</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REMINDERS PAGE - loads real interviews -->
+        <div id="page-reminders" class="page-section">
+            <h4 class="fw-bold mb-4">Interview Reminders</h4>
+            <div id="employer-reminders-container">
+                <div class="empty-state"><i class="bi bi-calendar-x"></i>No interviews scheduled yet</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function scheduleInterview(appId) {
+    const date = prompt('Enter interview date and time (e.g. 2026-06-01 14:00):');
+    if (!date) return;
+    const link = prompt('Enter Google Meet link (optional):') || '';
+    showLoader();
+    try {
+        const data = await api('/interviews/schedule', 'POST', {
+            application_id: appId,
+            scheduled_at: date,
+            meet_link: link,
+            notes: ''
+        });
+        hideLoader();
+        if (data.success) showToast('Interview scheduled!', 'success');
+        else showToast(data.message, 'error');
+    } catch(e) { hideLoader(); showToast('Failed', 'error'); }
+}
+    function getSkillMatch(jobSkills) {
+    if (!jobSkills) return '';
+    // Common tech skills applicants might have
+    const mySkills = ['Java', 'SQL', 'OOP', 'HTML', 'CSS', 'JavaScript', 'Python'];
+    const required = jobSkills.split(',').map(s => s.trim().toLowerCase());
+    const matched = mySkills.filter(s => required.includes(s.toLowerCase()));
+    const percent = Math.round((matched.length / required.length) * 100);
+    if (percent === 0) return '';
+    const color = percent >= 70 ? '#10b981' : percent >= 40 ? '#f59e0b' : '#ef4444';
+    return `<span style="color:${color}; font-weight:bold; font-size:11px;">⚡ ${percent}% Skill Match</span>`;
+}
+    async function deleteJob(jobId) {
+    if (!confirm('Are you sure? This will delete the job permanently!')) return;
+
+    showLoader();
+    try {
+        const data = await api(`/jobs/${jobId}`, 'DELETE');
+        hideLoader();
+
+        if (data.success) {
+            showToast('Job deleted successfully!', 'success');
+            await loadEmployerJobs(); // Refresh the list
+        } else {
+            showToast(data.message || 'Delete failed', 'error');
+        }
+    } catch (e) {
+        hideLoader();
+        showToast('Failed to delete job', 'error');
+    }
+}
+    // ==================== SETUP ====================
+    const API = 'http://localhost:3000/api';
+    let currentUser = null;
+    let allJobs = [];
+    let selectedJobId = null;
+    let isLogin = true;
+    let jobModalInstance = null;
+    let blockedUsers = [];
+
+    const jobImages = [
+        'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=500',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500',
+        'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=500',
+        'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500',
+        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500'
+    ];
+
+    // ==================== HELPERS ====================
+    function showToast(msg, type = 'info') {
+        const box = document.getElementById('toast-box');
+        const el = document.createElement('div');
+        el.className = `toast-msg ${type}`;
+        el.innerHTML = `<i class="bi bi-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info-circle'} me-2"></i>${msg}`;
+        box.appendChild(el);
+        setTimeout(() => el.remove(), 3500);
+    }
+
+    function showLoader() { document.getElementById('global-loader').style.display = 'flex'; }
+    function hideLoader() { document.getElementById('global-loader').style.display = 'none'; }
+
+    function logout() { currentUser = null; allJobs = []; location.reload(); }
+
+    async function api(endpoint, method = 'GET', body = null, isFormData = false) {
+        const opts = { method, headers: {} };
+        if (body && !isFormData) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+        if (body && isFormData) { opts.body = body; }
+        const res = await fetch(API + endpoint, opts);
+        return res.json();
+    }
+
+    // ==================== LANDING (your original functions kept) ====================
+    function scrollToAuth() { document.getElementById('auth-section').scrollIntoView({ behavior: 'smooth' }); }
+
+    function togglePass() {
+        const p = document.getElementById('userPass');
+        const i = document.getElementById('eyeIcon');
+        p.type = p.type === 'password' ? 'text' : 'password';
+        i.classList.toggle('bi-eye-slash');
+        i.classList.toggle('bi-eye');
+    }
+
+    function toggleAuthMode() {
+        isLogin = !isLogin;
+        document.querySelectorAll('.error-text').forEach(e => e.style.display = 'none');
+        document.querySelectorAll('.form-control').forEach(i => i.classList.remove('is-invalid'));
+        document.querySelectorAll('.signup-only').forEach(el => el.classList.toggle('d-none'));
+        document.getElementById('login-email-box').classList.toggle('d-none');
+        document.getElementById('auth-title').innerText = isLogin ? "Sign In" : "Join Now";
+        document.getElementById('toggleBtn').innerText = isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in";
+        document.getElementById('enterBtn').innerText = isLogin ? "Enter System" : "Register";
+        document.getElementById('pass-strength').style.display = 'none';
+    }
+
+    function analyzePassword(val) {
+        const bar = document.getElementById('pass-strength');
+        const btn = document.getElementById('enterBtn');
+        if (isLogin) {
+            bar.style.display = "none";
+            if (val.length >= 8) btn.classList.add('btn-valid'); else btn.classList.remove('btn-valid');
+        } else {
+            bar.style.display = "block";
+            const strong = /[A-Z]/.test(val) && /[a-z]/.test(val) && /[0-9]/.test(val) && /[^A-Za-z0-9]/.test(val) && val.length >= 8;
+            bar.style.width = strong ? "100%" : (val.length * 10) + "%";
+            bar.style.backgroundColor = strong ? "#22c55e" : "#ef4444";
+            if (strong) btn.classList.add('btn-valid'); else btn.classList.remove('btn-valid');
+        }
+    }
+
+    function validateInput(id, condition, errId) {
+        const input = document.getElementById(id);
+        const err = document.getElementById(errId);
+        if (!condition) { input.classList.add('is-invalid'); err.style.display = 'block'; return false; }
+        input.classList.remove('is-invalid'); err.style.display = 'none'; return true;
+    }
+
+    // LOGIN/REGISTER - now talks to real database
+    async function processAuth() {
+        if (isLogin) {
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('userPass').value;
+            const role = document.getElementById('userRole').value;
+            const v1 = validateInput('loginEmail', email.length > 0, 'err-loginEmail');
+            const v2 = validateInput('userPass', pass.length >= 8, 'err-pass-login');
+            if (!v1 || !v2) return;
+            showLoader();
+            try {
+                const data = await api('/auth/login', 'POST', { email, password: pass, role });
+                if (data.success) {
+                    currentUser = data.user;
+                    showToast(`Welcome back, ${data.user.name}!`, 'success');
+                    showDashboardByRole(data.user.role);
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (e) { showToast('Cannot connect to server. Run: node server.js', 'error'); }
+            hideLoader();
+        } else {
+            const fName = document.getElementById('fName').value;
+            const lName = document.getElementById('lName').value;
+            const email = document.getElementById('userEmail').value;
+            const phone = document.getElementById('userPhone').value;
+            const pass = document.getElementById('userPass').value;
+            const role = document.getElementById('userRole').value;
+            const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const isPhone = /^\d{11}$/.test(phone);
+            const isStrong = /[A-Z]/.test(pass) && /[a-z]/.test(pass) && /[0-9]/.test(pass) && /[^A-Za-z0-9]/.test(pass) && pass.length >= 8;
+            let v1 = validateInput('fName', fName.length > 0, 'err-fName');
+            let v2 = validateInput('lName', lName.length > 0, 'err-lName');
+            let v3 = validateInput('userEmail', isEmail, 'err-email');
+            let v4 = validateInput('userPhone', isPhone, 'err-phone');
+            let v5 = validateInput('userPass', isStrong, 'err-pass');
+            if (!v1 || !v2 || !v3 || !v4 || !v5) return;
+            showLoader();
+            try {
+                const data = await api('/auth/register', 'POST', { first_name: fName, last_name: lName, email, phone, password: pass, role });
+                if (data.success) {
+                    // After successful registration, login automatically
+const autoLogin = await api('/auth/login', 'POST', {
+    email: email,
+    password: pass,
+    role: role
+});
+
+if (autoLogin.success) {
+    currentUser = autoLogin.user;
+    showToast(`Welcome ${currentUser.name}!`, 'success');
+    showDashboardByRole(currentUser.role);
+} else {
+    showToast('Registration successful! Please login.', 'success');
+    toggleAuthMode();
+}
+                } else { showToast(data.message, 'error'); }
+            } catch (e) { showToast('Cannot connect to server', 'error'); }
+            hideLoader();
+        }
+    }
+
+    async function adminAuth() {
+        const key = document.getElementById('adminKeyInput').value;
+        if (!key) { showToast('Enter admin key', 'error'); return; }
+        showLoader();
+        try {
+            const data = await api('/auth/admin', 'POST', { key });
+            if (data.success) {
+                currentUser = { id: 0, name: 'Admin', email: 'admin@jobify.com', role: 'admin' };
+                showToast('Admin access granted', 'success');
+                showDashboardByRole('admin');
+            } else { showToast(data.message, 'error'); }
+        } catch (e) { showToast('Cannot connect to server', 'error'); }
+        hideLoader();
+    }
+
+    // ==================== ROUTING ====================
+    function showDashboardByRole(role) {
+        document.getElementById('landing-page').classList.remove('active-section');
+        document.getElementById('landing-page').style.display = 'none';
+        if (role === 'applicant') {
+            document.getElementById('applicant-dash').style.display = 'block';
+            document.getElementById('applicant-dash').classList.add('active-section');
+            initApplicantDash();
+        } else if (role === 'employer') {
+            document.getElementById('employer-dash').style.display = 'block';
+            document.getElementById('employer-dash').classList.add('active-section');
+            initEmployerDash();
+        } else if (role === 'admin') {
+            document.getElementById('admin-dash').style.display = 'block';
+            document.getElementById('admin-dash').classList.add('active-section');
+            initAdminDash();
+        }
+    }
+
+    // ==================== APPLICANT ====================
+    async function initApplicantDash() {
+        document.getElementById('app-user-name').textContent = currentUser.name;
+        document.getElementById('app-user-email-display').textContent = currentUser.email;
+        const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+        document.getElementById('app-avatar').textContent = initials;
+        jobModalInstance = new bootstrap.Modal(document.getElementById('jobModal'));
+        await loadJobs();
+    }
+
+    async function loadJobs() {
+        showLoader();
+        try {
+            const data = await api('/jobs');
+            if (data.success) {
+                allJobs = data.jobs;
+                renderJobs(allJobs);
+            } else {
+                document.getElementById('job-container').innerHTML = '<div class="empty-state col-12"><i class="bi bi-exclamation-circle"></i>Could not load jobs</div>';
+            }
+        } catch (e) {
+            document.getElementById('job-container').innerHTML = '<div class="empty-state col-12"><i class="bi bi-wifi-off"></i>Server not reachable</div>';
+        }
+        hideLoader();
+    }
+
+    function renderJobs(jobs) {
+        const container = document.getElementById('job-container');
+        if (!jobs.length) {
+            container.innerHTML = '<div class="empty-state col-12"><i class="bi bi-briefcase"></i>No jobs posted yet</div>';
+            return;
+        }
+        container.innerHTML = jobs.map((j, i) => `
+            <div class="col-md-4">
+                <div class="job-card">
+                    <img src="${jobImages[i % jobImages.length]}" alt="${j.title}">
+                    <div class="job-card-body">
+                        <h6 class="fw-bold mb-1">${j.title}</h6>
+                        <p class="text-muted small mb-1">${j.first_name || 'Employer'}</p>
+                        <p class="text-success small fw-bold mb-1">${j.salary_range || 'Salary not listed'}</p>
+                        <p class="small mb-3">${getSkillMatch(j.skills_required)}</p>
+                        <button class="btn-apply" onclick="openJob(${j.id})">Apply & View Details</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterJobs(term) {
+        const filtered = allJobs.filter(j =>
+            j.title.toLowerCase().includes(term.toLowerCase()) ||
+            (j.category && j.category.toLowerCase().includes(term.toLowerCase()))
+        );
+        renderJobs(filtered);
+    }
+
+    // openJob - your original function name kept, now loads real data
+    function openJob(jobId) {
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job) return;
+        selectedJobId = jobId;
+        document.getElementById('modalTitle').textContent = job.title;
+        document.getElementById('modalCompany').textContent = job.first_name ? job.first_name + ' (Employer)' : 'Company';
+        document.getElementById('modalCategory').textContent = '📁 ' + (job.category || '—');
+        document.getElementById('modalSalary').textContent = '💰 ' + (job.salary_range || 'Not specified');
+        document.getElementById('modalDesc').textContent = job.description || 'No description provided.';
+        document.getElementById('modalSkills').textContent = job.skills_required || 'Not specified';
+        document.getElementById('modalImg').src = jobImages[allJobs.indexOf(job) % jobImages.length];
+        document.getElementById('coverLetter').value = '';
+        document.getElementById('resumeFile').value = '';
+        jobModalInstance.show();
+    }
+
+    async function submitApplication() {
+        if (!selectedJobId) return;
+        const btn = document.getElementById('applyBtn');
+        btn.disabled = true; btn.textContent = 'Submitting...';
+        const formData = new FormData();
+        formData.append('job_id', selectedJobId);
+        formData.append('applicant_id', currentUser.id);
+        formData.append('cover_letter', document.getElementById('coverLetter').value);
+        const file = document.getElementById('resumeFile').files[0];
+        if (file) formData.append('resume', file);
+        try {
+            const data = await api('/apply', 'POST', formData, true);
+            if (data.success) { showToast('Application submitted!', 'success'); jobModalInstance.hide(); }
+            else { showToast(data.message, 'error'); }
+        } catch (e) { showToast('Failed to submit', 'error'); }
+        btn.disabled = false; btn.textContent = 'Confirm Application';
+    }
+
+    async function loadMyApplications() {
+        const container = document.getElementById('applications-container');
+        container.innerHTML = '<div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>';
+        showLoader();
+        try {
+            const data = await api(`/applications/applicant/${currentUser.id}`);
+            hideLoader();
+            if (!data.success || !data.applications.length) {
+                container.innerHTML = '<div class="empty-state"><i class="bi bi-send"></i>No applications yet. Apply to jobs first!</div>';
+                return;
+            }
+            const colorMap = { Applied: '#cbd5e1', Shortlisted: '#10b981', Interview: '#6366f1', Hired: '#059669', Rejected: '#ef4444', 'Under Review': '#f59e0b' };
+            container.innerHTML = data.applications.map(app => `
+                <div class="tracking-card" style="border-left-color: ${colorMap[app.status] || '#cbd5e1'}">
+                    <div class="tracking-header">
+                        <div>
+                            <h6 class="fw-bold mb-1">${app.title}</h6>
+                            <p class="text-muted small mb-0">${app.employer_name} • Applied ${new Date(app.applied_at).toLocaleDateString()}</p>
+                        </div>
+                        <span class="status-badge status-${app.status.toLowerCase().replace(' ','-')}" style="background:${colorMap[app.status]}22; color:${colorMap[app.status]}">${app.status}</span>
+                    </div>
+                    <div id="thread-${app.id}" style="display:none; padding:15px 20px; background:#f8fafc; border-top:1px solid #e2e8f0;"></div>
+                    <div class="message-bar">
+                        <input type="text" id="msg-${app.id}" placeholder="Reply to recruiter...">
+                        <button class="btn btn-primary btn-sm px-3" onclick="sendMessage(${app.id}, 'msg-${app.id}', 'thread-${app.id}')">Send</button>
+                        <button class="btn btn-outline-secondary btn-sm px-3" onclick="toggleThread(${app.id})">History</button>
+                    </div>
+                </div>
+            `).join('');
+            // Auto-load message threads so applicant sees employer messages
+for (const app of data.applications) {
+    const thread = document.getElementById(`thread-${app.id}`);
+    if (thread) {
+        thread.style.display = 'block';
+        await loadThread(app.id, `thread-${app.id}`);
+    }
+}
+            const interviews = data.applications.filter(a => a.status === 'Interview').length;
+            document.getElementById('reminder-badge').textContent = interviews;
+        } catch (e) {
+            hideLoader();
+            container.innerHTML = '<div class="empty-state"><i class="bi bi-wifi-off"></i>Server not reachable</div>';
+        }
+    }
+
+    async function sendMessage(appId, inputId, threadId) {
+        const input = document.getElementById(inputId);
+        const body = input.value.trim();
+        if (!body) return;
+        try {
+            const data = await api('/messages', 'POST', { application_id: appId, sender_id: currentUser.id, body });
+            if (data.success) { input.value = ''; showToast('Message sent!', 'success'); await loadThread(appId, threadId); }
+        } catch (e) { showToast('Failed to send', 'error'); }
+    }
+
+    async function toggleThread(appId) {
+        const thread = document.getElementById(`thread-${appId}`);
+        if (thread.style.display === 'none') { thread.style.display = 'block'; await loadThread(appId, `thread-${appId}`); }
+        else { thread.style.display = 'none'; }
+    }
+
+async function loadThread(appId, threadId) {
+    const container = document.getElementById(threadId);
+    if (!container) return;
+
+    try {
+        const data = await api(`/messages/${appId}`);
+        console.log('Messages loaded:', data); // Check browser console
+
+        if (!data.success || !data.messages || !data.messages.length) {
+            container.innerHTML = '<p class="text-muted small text-center">💬 No messages yet</p>';
+            return;
+        }
+
+        container.innerHTML = data.messages.map(m => `
+            <div class="message-bubble ${m.sender_id === currentUser.id ? 'mine' : 'theirs'}">
+                <small style="opacity:0.6;font-size:10px;">📝 ${m.first_name || 'User'} • ${new Date(m.sent_at).toLocaleString()}</small><br>
+                ${escapeHtml(m.body)}
+            </div>
+        `).join('');
+
+        // Scroll to bottom
+        container.scrollTop = container.scrollHeight;
+
+    } catch (e) {
+        console.error('Load thread error:', e);
+        container.innerHTML = '<p class="text-muted small text-center">⚠️ Error loading messages</p>';
+    }
+}
+
+// Add this helper function at the top with other functions
+function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
+}
+    async function loadReminders() {
+        const container = document.getElementById('reminders-container');
+        try {
+            const data = await api(`/applications/applicant/${currentUser.id}`);
+            const interviews = data.applications ? data.applications.filter(a => a.status === 'Interview') : [];
+            if (!interviews.length) {
+                container.innerHTML = '<div class="empty-state"><i class="bi bi-calendar-x"></i>No interviews scheduled</div>';
+                return;
+            }
+            container.innerHTML = interviews.map(a => `
+                <div class="alert border-0 shadow-sm d-flex align-items-center p-3 mb-3" style="background: #e0e7ff; color: #3730a3; border-radius: 12px;">
+                    <i class="bi bi-camera-video fs-4 me-3"></i>
+                    <div>
+                        <h6 class="fw-bold mb-0">Interview: ${a.title}</h6>
+                        <p class="small mb-0">Your application has been moved to Interview stage</p>
+                    </div>
+                </div>
+            `).join('');
+        } catch (e) {}
+    }
+
+    // your original tab switcher name kept
+    function switchApplicantTab(tabId, el) {
+        document.querySelectorAll('#applicant-dash .tab-content').forEach(t => t.classList.remove('active-tab'));
+        document.querySelectorAll('#applicant-dash .sidebar-menu li').forEach(li => li.classList.remove('active-link'));
+        document.getElementById(tabId).classList.add('active-tab');
+        if (el) el.classList.add('active-link');
+        if (tabId === 'app-applied') loadMyApplications();
+        if (tabId === 'app-reminders') loadReminders();
+    }
+
+    // ==================== EMPLOYER ====================
+    async function initEmployerDash() {
+        document.getElementById('emp-user-name').textContent = currentUser.name;
+        await loadEmployerJobs();
+    }
+
+    async function loadEmployerJobs() {
+        const container = document.getElementById('employer-jobs-container');
+        showLoader();
+        try {
+            const data = await api(`/jobs/employer/${currentUser.id}`);
+            hideLoader();
+            if (!data.success || !data.jobs.length) {
+                container.innerHTML = '<div class="empty-state"><i class="bi bi-briefcase"></i>No jobs posted yet. Post your first vacancy!</div>';
+                return;
+            }
+            container.innerHTML = data.jobs.map(job => `
+    <div class="job-card mb-3">
+        <div class="job-header" onclick="toggleFolder('apps-${job.id}')">
+            <div>
+                <h5 class="fw-bold">${job.title} <span class="badge bg-primary-subtle text-primary ms-2" style="font-size:10px;">${job.category}</span></h5>
+                <span class="text-muted small">${job.applicant_count || 0} Applicant(s)</span>
+            </div>
+            <div>
+                <i class="bi bi-trash text-danger me-2" style="cursor:pointer" onclick="event.stopPropagation(); deleteJob(${job.id})"></i>
+                <i class="bi bi-chevron-down text-muted"></i>
+            </div>
+        </div>
+        <div id="apps-${job.id}" style="display:none;"></div>
+    </div>
+`).join('');
+        } catch (e) {
+            hideLoader();
+            container.innerHTML = '<div class="empty-state"><i class="bi bi-wifi-off"></i>Server not reachable</div>';
+        }
+    }
+
+    // your original toggleFolder function kept + enhanced
+    async function toggleFolder(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el.style.display === 'none' || el.style.display === '') {
+            el.style.display = 'block';
+            if (!el.innerHTML.trim()) {
+                // Extract job id from container id like "apps-5"
+                const jobId = id.replace('apps-', '');
+                el.innerHTML = '<p class="text-center py-3 text-muted small">Loading applicants...</p>';
+                showLoader();
+                try {
+                    const data = await api(`/applications/job/${jobId}`);
+                    hideLoader();
+                    if (!data.applicants || !data.applicants.length) {
+                        el.innerHTML = '<p class="text-center py-3 text-muted small">No applicants yet</p>';
+                        return;
+                    }
+                    el.innerHTML = `<table class="app-table">
+                        ${data.applicants.map(a => `
+                        <tr class="app-row" id="row-${a.id}">
+                            <td><strong>${a.first_name} ${a.last_name}</strong><br><small class="text-muted">${a.email}</small></td>
+                            <td><span class="badge bg-secondary">${a.status}</span></td>
+                            <td>${a.resume_path ? `<button class="btn-view-cv" onclick="viewCV('${a.first_name}', '${a.resume_path}')">View CV</button>` : '<span class="text-muted small">No CV</span>'}</td>
+                            <td class="text-end" id="ctrl-${a.id}">
+                                <select class="form-select form-select-sm d-inline w-auto me-2" id="status-${a.id}">
+                                    <option ${a.status==='Applied'?'selected':''}>Applied</option>
+                                    <option ${a.status==='Under Review'?'selected':''}>Under Review</option>
+                                    <option ${a.status==='Shortlisted'?'selected':''}>Shortlisted</option>
+                                    <option ${a.status==='Interview'?'selected':''}>Interview</option>
+                                    <option ${a.status==='Hired'?'selected':''}>Hired</option>
+                                    <option ${a.status==='Rejected'?'selected':''}>Rejected</option>
+                                </select>
+                                <button class="btn-action btn-shortlist" onclick="shortlist('${a.id}')">Update</button>
+                               ${a.status === 'Interview' ? `
+                                <button class="btn btn-sm btn-outline-info ms-1" onclick="scheduleInterview(${a.id})">Schedule</button>
+                                ` : ''}
+                            </td>
+                        </tr>
+                        <tr id="dm-row-${a.id}" style="display:none;">
+                            <td colspan="4">
+                                <div class="dm-box">
+                                    <div id="emp-thread-${a.id}" class="mb-2"></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control border-0 bg-light shadow-none" id="emp-msg-${a.id}" placeholder="Type personal message to ${a.first_name}...">
+                                        <button class="btn btn-primary btn-sm px-4" onclick="empSendMessage(${a.id})">Send DM</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        `).join('')}
+                    </table>`;
+                } catch (e) {
+                    hideLoader();
+                    el.innerHTML = '<p class="text-center py-3 text-danger small">Failed to load</p>';
+                }
+            }
+        } else {
+            el.style.display = 'none';
+        }
+    }
+
+    // your original shortlist function name kept + now saves to database
+    async function shortlist(appId) {
+        const status = document.getElementById(`status-${appId}`).value;
+        showLoader();
+        try {
+            const data = await api('/applications/status', 'PUT', { application_id: appId, status, employer_id: currentUser.id });
+            hideLoader();
+            if (data.success) {
+                showToast(`Status updated to: ${status}`, 'success');
+                // show dm box after shortlisting like your original
+                if (status === 'Shortlisted' || status === 'Interview') {
+                    const dmRow = document.getElementById(`dm-row-${appId}`);
+                    if (dmRow) dmRow.style.display = 'table-row';
+                    const row = document.getElementById(`row-${appId}`);
+                    if (row) row.style.backgroundColor = '#f0f9ff';
+                }
+            } else { showToast(data.message, 'error'); }
+        } catch (e) { hideLoader(); showToast('Failed to update', 'error'); }
+    }
+
+    // your original viewCV function kept
+    function viewCV(name, path) {
+        if (path) { window.open(path, '_blank'); }
+        else { showToast('No CV uploaded by ' + name, 'info'); }
+    }
+
+    // your original sendMessage function name kept
+    async function empSendMessage(appId) {
+    const input = document.getElementById(`emp-msg-${appId}`);
+    const body = input.value.trim();
+    if (!body) {
+        showToast('Type a message first', 'error');
+        return;
+    }
+    try {
+        const data = await api('/messages', 'POST', {
+            application_id: appId,
+            sender_id: currentUser.id,
+            body
+        });
+        if (data.success) {
+            input.value = '';
+            showToast('Message sent!', 'success');
+
+            const threadId = `emp-thread-${appId}`;
+            await loadThread(appId, threadId);
+        } else {
+            showToast(data.message || 'Failed to send', 'error');
+        }
+    } catch (e) {
+        showToast('Failed to send message', 'error');
+    }
+}
+
+    async function postJob() {
+        const title = document.getElementById('jobTitle').value.trim();
+        const description = document.getElementById('jobDesc').value.trim();
+        if (!title || !description) { showToast('Title and description are required', 'error'); return; }
+        showLoader();
+        try {
+            const data = await api('/jobs', 'POST', {
+                title,
+                category: document.getElementById('jobCategory').value,
+                salary_range: document.getElementById('jobSalary').value,
+                skills_required: document.getElementById('jobSkills').value,
+                description,
+                employer_id: currentUser.id
+            });
+            hideLoader();
+            if (data.success) {
+                showToast('Job posted successfully!', 'success');
+                document.getElementById('jobTitle').value = '';
+                document.getElementById('jobSalary').value = '';
+                document.getElementById('jobSkills').value = '';
+                document.getElementById('jobDesc').value = '';
+                switchEmployerPage('page-jobs', document.querySelector('.nav-link-custom'));
+                await loadEmployerJobs();
+            } else { showToast(data.message, 'error'); }
+        } catch (e) { hideLoader(); showToast('Failed to post job', 'error'); }
+    }
+
+    // your original switchEmployerPage function kept
+    function switchEmployerPage(pageId, navEl) {
+        document.querySelectorAll('#employer-dash .page-section').forEach(p => p.classList.remove('active-page'));
+        document.querySelectorAll('#employer-dash .nav-link-custom').forEach(l => l.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active-page');
+        if (navEl) navEl.classList.add('active');
+    }
+
+    // ==================== ADMIN ====================
+    async function initAdminDash() {
+        await loadAdminStats();
+        loadAdminUsers('applicant');
+    }
+
+    async function loadAdminStats() {
+        showLoader();
+        try {
+            const data = await api('/admin/stats');
+            hideLoader();
+            if (data.success) {
+                document.getElementById('stat-applicants').textContent = data.stats.applicants + ' Active';
+                document.getElementById('stat-employers').textContent = data.stats.employers + ' Active';
+                document.getElementById('stat-jobs').textContent = data.stats.jobs + ' Live';
+            }
+        } catch (e) { hideLoader(); }
+    }
+
+    // your original showAdminList function name kept, now loads real data
+    async function loadAdminUsers(role) {
+    const area = document.getElementById('admin-list-area');
+    area.innerHTML = '<div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>';
+    showLoader();
+    try {
+        if (role === 'jobs') {
+            // Load jobs
+            const data = await api('/jobs');
+            hideLoader();
+            if (!data.success || !data.jobs.length) {
+                area.innerHTML = '<div class="empty-state"><i class="bi bi-briefcase"></i>No jobs found</div>';
+                return;
+            }
+            area.innerHTML = `<h5 class="mb-3">All Jobs List</h5>` +
+                data.jobs.map(j => `
+                    <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
+                        <div>
+                            <strong>${j.title}</strong><br>
+                            <small class="text-muted">${j.category || 'No category'} • ${j.salary_range || 'No salary'}</small>
+                        </div>
+                        <button class="btn btn-sm btn-outline-info" onclick="showToast('Posted by employer ID: ${j.employer_id}', 'info')">View</button>
+                    </div>
+                `).join('');
+        } else {
+            // Load users (applicants or employers)
+            const data = await api(`/admin/users/${role}`);
+            hideLoader();
+            if (!data.success || !data.users.length) {
+                area.innerHTML = `<div class="empty-state"><i class="bi bi-people"></i>No ${role}s found</div>`;
+                return;
+            }
+            area.innerHTML = `<h5 class="mb-3 text-capitalize">${role}s List</h5>` +
+                data.users.map(u => `
+                    <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
+                        <span>${u.first_name} ${u.last_name} <small class="text-muted">(${u.email})</small></span>
+                        <div>
+                            <button class="btn btn-sm btn-outline-warning me-2" onclick="showToast('Warning sent to ${u.first_name}', 'info')">Warn</button>
+                            <button class="btn btn-sm btn-danger" onclick="blockUser(${u.id}, '${role}', '${u.first_name} ${u.last_name}')">Block</button>
+                        </div>
+                    </div>
+                `).join('');
+        }
+    } catch (e) {
+        hideLoader();
+        area.innerHTML = '<div class="empty-state">Error loading</div>';
+    }
+}
+
+    // your original blockUser function kept + now saves to database
+    async function blockUser(userId, role, name) {
+        if (!confirm(`Remove ${name} permanently?`)) return;
+        showLoader();
+        try {
+            const data = await api(`/admin/users/${userId}`, 'DELETE');
+            hideLoader();
+            if (data.success) {
+                blockedUsers.push(name);
+                updateBlockedUI();
+                showToast('User removed', 'success');
+                await loadAdminUsers(role);
+                await loadAdminStats();
+            } else { showToast(data.message, 'error'); }
+        } catch (e) { hideLoader(); showToast('Failed', 'error'); }
+    }
+
+    // your original updateBlockedUI function kept
+    function updateBlockedUI() {
+        const list = document.getElementById('blocked-list');
+        if (!blockedUsers.length) { list.innerHTML = '<p class="text-muted small">Clean slate.</p>'; return; }
+        list.innerHTML = blockedUsers.map(u => `
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-danger small">${u}</span>
+                <button class="btn btn-link btn-sm p-0" onclick="unblock('${u}')">Restore</button>
+            </div>
+        `).join('');
+    }
+
+    // your original unblock function kept
+    function unblock(name) { blockedUsers = blockedUsers.filter(u => u !== name); updateBlockedUI(); showToast('User Restored.', 'success'); }
+
+    async function loadActivityLogs() {
+        const container = document.getElementById('logs-container');
+        showLoader();
+        try {
+            const data = await api('/admin/logs');
+            hideLoader();
+            if (!data.logs || !data.logs.length) { container.innerHTML = 'No activity logged yet.'; return; }
+            container.innerHTML = data.logs.map(log => `<div style="margin-bottom:4px;">${log}</div>`).join('');
+            container.scrollTop = container.scrollHeight;
+        } catch (e) { hideLoader(); container.innerHTML = 'Could not load logs.'; }
+    }
+
+    // your original switchTabAdmin function kept
+    function switchTabAdmin(id, el) {
+        document.querySelectorAll('#admin-dash .tab-content').forEach(t => t.classList.remove('active-tab'));
+        document.querySelectorAll('#admin-dash .admin-nav-item').forEach(i => i.classList.remove('active'));
+        document.getElementById(id).classList.add('active-tab');
+        el.classList.add('active');
+        if (id === 'adm-logs') loadActivityLogs();
+        if (id === 'adm-main') loadAdminStats();
+    }
+
+    // ==================== INIT ====================
+    window.onload = function() {
+        document.getElementById('landing-page').style.display = 'block';
+        document.getElementById('landing-page').classList.add('active-section');
+    };
+
+    // Search listener - your original kept
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchEl = document.getElementById('jobSearch');
+        if (searchEl) {
+            searchEl.addEventListener('input', (e) => { filterJobs(e.target.value); });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[2026-05-25T11:34:02.313Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-05-25T11:34:56.496Z] ACTION: REGISTER | USER: maheen@gmail.com | Role: applicant
+[2026-05-25T11:35:10.515Z] ACTION: LOGIN | USER: maheen@gmail.com | Role: applicant
+[2026-05-25T11:37:19.613Z] ACTION: LOGIN | USER: maheen@gmail.com | Role: applicant
+[2026-05-25T11:38:08.207Z] ACTION: REGISTER | USER: maheenemp@gmail.com | Role: employer
+[2026-05-25T11:38:21.854Z] ACTION: LOGIN | USER: maheenemp@gmail.com | Role: employer
+[2026-05-25T11:39:19.891Z] ACTION: POST_JOB | USER: employer_3 | Job: soc analyst
+[2026-05-25T11:39:52.599Z] ACTION: LOGIN | USER: maheen@gmail.com | Role: applicant
+[2026-05-25T11:40:17.544Z] ACTION: APPLY | USER: applicant_2 | Job ID: 1
+[2026-05-25T11:40:55.118Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-05-25T11:42:36.746Z] ACTION: REGISTER | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T11:43:02.808Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T13:02:40.495Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T13:03:10.099Z] ACTION: POST_JOB | USER: employer_4 | Job: java deve
+[2026-05-25T13:03:44.226Z] ACTION: REGISTER | USER: m@gmail.com | Role: applicant
+[2026-05-25T13:03:44.602Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-05-25T13:03:59.176Z] ACTION: APPLY | USER: applicant_5 | Job ID: 2
+[2026-05-25T13:04:12.888Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T13:04:21.284Z] ACTION: STATUS_UPDATE | USER: employer_4 | App 2 → Applied
+[2026-05-25T13:04:27.768Z] ACTION: STATUS_UPDATE | USER: employer_4 | App 2 → Interview
+[2026-05-25T13:05:08.455Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-05-25T13:09:04.176Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-05-25T13:09:23.241Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-05-25T13:09:50.603Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T13:24:43.297Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T14:12:03.704Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
