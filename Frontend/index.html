@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-        /* ---------- ALL YOUR ORIGINAL STYLES KEPT EXACTLY ---------- */
         :root { --primary-dark: #1e293b; --accent-blue: #38bdf8; --bg-light: #f8fafc; --accent-indigo: #6366f1; --success-emerald: #10b981; --danger-red: #ef4444; --admin-bg: #0f172a; --secondary: #334155; --accent: #0ea5e9; --glass: rgba(255,255,255,0.9); --border: #cbd5e1; }
         body { font-family: 'Segoe UI', system-ui, 'Inter', sans-serif; background: var(--bg-light); color: var(--primary-dark); scroll-behavior: smooth; overflow-x: hidden; }
-
-        /* Landing specific */
         .navbar { background: white; padding: 15px 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .mission-container { background: white; border-left: 6px solid var(--accent-blue); border-radius: 12px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 50px; }
         .mission-container h2 { font-weight: 800; color: #0f172a; margin-bottom: 25px; }
@@ -29,16 +25,12 @@
         .is-invalid { border-color: #ef4444 !important; }
         .btn-valid { background-color: #22c55e !important; }
         #enterBtn { background-color: #64748b; border: none; color: white; font-weight: bold; transition: 0.3s; }
-
-        /* Admin panel specific */
         .admin-sidebar { background: var(--admin-bg); color: white; border-radius: 12px; padding: 20px; min-height: 450px; }
         .admin-nav-item { padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-bottom: 8px; opacity: 0.7; }
         .admin-nav-item:hover { opacity: 1; background: rgba(255,255,255,0.1); }
         .admin-nav-item.active { background: #ef4444; color: white; font-weight: bold; opacity: 1; }
         .list-item { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 10px; transition: 0.2s; }
         .cursor-pointer { cursor: pointer; }
-
-        /* Applicant panel specific */
         .sidebar-menu { list-style: none; padding: 0; margin-top: 20px; }
         .sidebar-menu li { padding: 12px 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 5px; color: #64748b; display: flex; justify-content: space-between; align-items: center; }
         .sidebar-menu li:hover { background: #f1f5f9; }
@@ -63,8 +55,6 @@
         .message-bar { background: #f1f5f9; padding: 10px 20px; display: flex; gap: 10px; border-top: 1px solid #e2e8f0; }
         .message-bar input { border-radius: 6px; border: 1px solid #cbd5e1; flex-grow: 1; padding: 5px 12px; font-size: 13px; }
         .modal-job-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
-
-        /* Employer panel specific */
         .sidebar { background: var(--primary-dark); border-right: 1px solid var(--secondary); height: 100vh; position: fixed; width: 260px; padding: 30px 15px; z-index: 100; color: white; }
         .nav-link-custom { display: flex; align-items: center; padding: 12px 15px; border-radius: 10px; color: #94a3b8; text-decoration: none; margin-bottom: 6px; cursor: pointer; transition: 0.3s; font-weight: 500; font-size: 13.5px; }
         .nav-link-custom:hover { background: var(--secondary); color: white; }
@@ -85,27 +75,19 @@
         .reminder-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
         .reminder-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-right: 15px; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Tab & section generic */
         .tab-content { display: none; }
         .active-tab { display: block !important; animation: fadeIn 0.4s; }
         .app-section { display: none; padding: 30px 0; }
         .active-section { display: block !important; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Toast notifications */
         #toast-box { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
         .toast-msg { background: #1e293b; color: white; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease; min-width: 260px; }
         .toast-msg.success { border-left: 4px solid #22c55e; }
         .toast-msg.error { border-left: 4px solid #ef4444; }
         .toast-msg.info { border-left: 4px solid #38bdf8; }
-
-        /* Loader */
         #global-loader { position: fixed; inset: 0; background: rgba(255,255,255,0.85); z-index: 8888; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
         .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; }
         .empty-state i { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-
-        /* Message bubbles */
         .message-bubble { padding: 8px 14px; border-radius: 10px; margin-bottom: 8px; max-width: 80%; font-size: 13px; }
         .message-bubble.mine { background: #1e293b; color: white; margin-left: auto; }
         .message-bubble.theirs { background: #e2e8f0; color: #1e293b; }
@@ -113,16 +95,13 @@
 </head>
 <body>
 
-<!-- TOAST BOX -->
 <div id="toast-box"></div>
-
-<!-- LOADER -->
 <div id="global-loader">
     <div class="spinner-border text-primary" style="width:3rem;height:3rem;"></div>
     <span class="text-muted">Loading...</span>
 </div>
 
-<!-- ======================= LANDING PAGE (your original design kept) ======================= -->
+<!-- LANDING PAGE -->
 <nav class="navbar d-flex justify-content-between">
     <div class="logo" style="font-weight: 800; font-size: 1.4rem;">JOBIFY<span style="color:var(--accent-blue)">PRO</span></div>
     <button class="btn btn-dark btn-sm px-3" onclick="scrollToAuth()">Maheen Nawaz</button>
@@ -144,7 +123,6 @@
                         <button class="btn btn-sm btn-link text-decoration-none" onclick="toggleAuthMode()" id="toggleBtn">Don't have an account? Sign up</button>
                     </div>
                     <div class="row">
-                        <!-- SIGNUP ONLY -->
                         <div class="col-md-6 mb-3 d-none signup-only">
                             <label class="form-label">First Name</label>
                             <input type="text" class="form-control" id="fName" placeholder="e.g. Maheen">
@@ -165,8 +143,6 @@
                             <input type="text" class="form-control" id="userPhone" placeholder="03XXXXXXXXX">
                             <small class="error-text" id="err-phone">Must be 11 digits</small>
                         </div>
-
-                        <!-- LOGIN FIELDS -->
                         <div class="col-md-6 mb-3" id="login-email-box">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" id="loginEmail" placeholder="you@email.com">
@@ -193,8 +169,6 @@
                     <button class="btn w-100 py-3" id="enterBtn" onclick="processAuth()">Enter System</button>
                 </div>
             </div>
-
-            <!-- ADMIN CARD - your original design -->
             <div class="col-md-4">
                 <div class="auth-card text-center bg-light border-dashed h-100 d-flex flex-column justify-content-center">
                     <i class="bi bi-shield-lock-fill text-danger" style="font-size: 50px;"></i>
@@ -204,8 +178,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- YOUR ORIGINAL MISSION SECTION -->
         <div class="mission-container">
             <h2>Our Mission</h2>
             <p>Developed for the <strong>OOP Lab Project</strong>, <strong>Jobify Pro</strong> is a high-performance bridge between emerging talent and industry leaders. Inspired by the vision of professional excellence at institutions like <strong>UET</strong>, we provide a unified ecosystem for application management and real-time recruitment tracking. <br><br> By leveraging <strong>Object-Oriented Design</strong> and <strong>Secure SQL Architecture</strong>, we transform the hiring experience into a seamless, digital journey—empowering the next generation of professionals to lead with confidence.</p>
@@ -214,7 +186,7 @@
     </div>
 </div>
 
-<!-- ======================= ADMIN PANEL (your original layout) ======================= -->
+<!-- ADMIN PANEL -->
 <div id="admin-dash" style="display: none;" class="app-section">
     <div class="container py-4">
         <div class="row">
@@ -229,7 +201,6 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <!-- MANAGEMENT TAB - now loads real data -->
                 <div id="adm-main" class="tab-content active-tab">
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
@@ -256,14 +227,10 @@
                     </div>
                     <div id="admin-list-area" class="mt-4"></div>
                 </div>
-
-                <!-- LOGS TAB -->
                 <div id="adm-logs" class="tab-content">
                     <h4 class="fw-bold mb-4">Activity Logs</h4>
                     <div id="logs-container" style="font-family: monospace; font-size: 12px; background: #0f172a; color: #94a3b8; padding: 20px; border-radius: 10px; max-height: 500px; overflow-y: auto;">Loading logs...</div>
                 </div>
-
-                <!-- SETTINGS TAB - your original design -->
                 <div id="adm-settings" class="tab-content">
                     <h3 class="fw-bold mb-4">Security & Oversight</h3>
                     <div class="row g-4">
@@ -287,7 +254,7 @@
     </div>
 </div>
 
-<!-- ======================= APPLICANT PANEL (your original layout) ======================= -->
+<!-- APPLICANT PANEL -->
 <div id="applicant-dash" style="display: none;" class="app-section">
     <nav class="navbar d-flex justify-content-between align-items-center">
         <div class="logo">JOBIFY<span style="color:var(--accent-indigo)">PRO</span></div>
@@ -316,7 +283,6 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <!-- FIND JOBS TAB -->
                 <div id="app-jobs" class="tab-content active-tab">
                     <h5 class="fw-bold mb-3">Available Opportunities</h5>
                     <div class="search-container">
@@ -325,25 +291,18 @@
                             <input type="text" placeholder="Search jobs..." id="jobSearch" oninput="filterJobs(this.value)">
                         </div>
                     </div>
-                    <!-- Jobs load here from database -->
                     <div class="row g-3" id="job-container">
                         <div class="empty-state col-12"><i class="bi bi-hourglass-split"></i>Loading jobs...</div>
                     </div>
                 </div>
-
-                <!-- APPLICATION TRACKING TAB -->
                 <div id="app-applied" class="tab-content">
                     <h5 class="fw-bold mb-4">Application Progress</h5>
-                    <!-- Applications load here from database -->
                     <div id="applications-container">
                         <div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>
                     </div>
                 </div>
-
-                <!-- REMINDERS TAB -->
                 <div id="app-reminders" class="tab-content">
                     <h5 class="fw-bold mb-4">Upcoming Events</h5>
-                    <!-- Reminders load here from database -->
                     <div id="reminders-container">
                         <div class="empty-state"><i class="bi bi-calendar-x"></i>No upcoming interviews</div>
                     </div>
@@ -353,7 +312,7 @@
     </div>
 </div>
 
-<!-- Applicant Modal - your original design + real apply -->
+<!-- Applicant Modal -->
 <div class="modal fade" id="jobModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -383,7 +342,7 @@
     </div>
 </div>
 
-<!-- ======================= EMPLOYER PANEL (your original layout) ======================= -->
+<!-- EMPLOYER PANEL -->
 <div id="employer-dash" style="display: none;" class="app-section">
     <div class="sidebar">
         <div class="mb-5 px-2">
@@ -398,15 +357,12 @@
         </div>
     </div>
     <div class="main-content">
-        <!-- ACTIVE JOBS PAGE - loads real applicants -->
         <div id="page-jobs" class="page-section active-page">
             <h3 class="fw-bold mb-4">Job Management</h3>
             <div id="employer-jobs-container">
                 <div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading your jobs...</div>
             </div>
         </div>
-
-        <!-- POST VACANCY - your original form -->
         <div id="page-post" class="page-section">
             <div class="bg-white p-4 p-md-5 rounded-4 border shadow-sm">
                 <h4 class="fw-bold mb-4">Post New Vacancy</h4>
@@ -433,13 +389,15 @@
                         <textarea class="form-control" rows="4" id="jobDesc" placeholder="Job Responsibilities..."></textarea>
                     </div>
                     <div class="col-12">
+                        <label class="form-label">Job Image (optional)</label>
+                        <input type="file" class="form-control" id="jobImage" accept="image/*">
+                    </div>
+                    <div class="col-12">
                         <button class="btn btn-dark w-100 py-2 fw-bold" onclick="postJob()">Publish to Jobify Board</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- REMINDERS PAGE - loads real interviews -->
         <div id="page-reminders" class="page-section">
             <h4 class="fw-bold mb-4">Interview Reminders</h4>
             <div id="employer-reminders-container">
@@ -450,53 +408,47 @@
 </div>
 
 <script>
-    async function scheduleInterview(appId) {
-    const date = prompt('Enter interview date and time (e.g. 2026-06-01 14:00):');
-    if (!date) return;
-    const link = prompt('Enter Google Meet link (optional):') || '';
-    showLoader();
-    try {
-        const data = await api('/interviews/schedule', 'POST', {
-            application_id: appId,
-            scheduled_at: date,
-            meet_link: link,
-            notes: ''
-        });
-        hideLoader();
-        if (data.success) showToast('Interview scheduled!', 'success');
-        else showToast(data.message, 'error');
-    } catch(e) { hideLoader(); showToast('Failed', 'error'); }
-}
+    // REMOVED SKILL MATCH - No more lightning bolt
     function getSkillMatch(jobSkills) {
-    if (!jobSkills) return '';
-    // Common tech skills applicants might have
-    const mySkills = ['Java', 'SQL', 'OOP', 'HTML', 'CSS', 'JavaScript', 'Python'];
-    const required = jobSkills.split(',').map(s => s.trim().toLowerCase());
-    const matched = mySkills.filter(s => required.includes(s.toLowerCase()));
-    const percent = Math.round((matched.length / required.length) * 100);
-    if (percent === 0) return '';
-    const color = percent >= 70 ? '#10b981' : percent >= 40 ? '#f59e0b' : '#ef4444';
-    return `<span style="color:${color}; font-weight:bold; font-size:11px;">⚡ ${percent}% Skill Match</span>`;
-}
-    async function deleteJob(jobId) {
-    if (!confirm('Are you sure? This will delete the job permanently!')) return;
-
-    showLoader();
-    try {
-        const data = await api(`/jobs/${jobId}`, 'DELETE');
-        hideLoader();
-
-        if (data.success) {
-            showToast('Job deleted successfully!', 'success');
-            await loadEmployerJobs(); // Refresh the list
-        } else {
-            showToast(data.message || 'Delete failed', 'error');
-        }
-    } catch (e) {
-        hideLoader();
-        showToast('Failed to delete job', 'error');
+        return '';
     }
-}
+
+    async function scheduleInterview(appId) {
+        const date = prompt('Enter interview date and time (e.g. 2026-06-01 14:00):');
+        if (!date) return;
+        const link = prompt('Enter Google Meet link (optional):') || '';
+        showLoader();
+        try {
+            const data = await api('/interviews/schedule', 'POST', {
+                application_id: appId,
+                scheduled_at: date,
+                meet_link: link,
+                notes: ''
+            });
+            hideLoader();
+            if (data.success) showToast('Interview scheduled!', 'success');
+            else showToast(data.message, 'error');
+        } catch(e) { hideLoader(); showToast('Failed', 'error'); }
+    }
+
+    async function deleteJob(jobId) {
+        if (!confirm('Are you sure? This will delete the job permanently!')) return;
+        showLoader();
+        try {
+            const data = await api(`/jobs/${jobId}`, 'DELETE');
+            hideLoader();
+            if (data.success) {
+                showToast('Job deleted successfully!', 'success');
+                await loadEmployerJobs();
+            } else {
+                showToast(data.message || 'Delete failed', 'error');
+            }
+        } catch (e) {
+            hideLoader();
+            showToast('Failed to delete job', 'error');
+        }
+    }
+
     // ==================== SETUP ====================
     const API = 'http://localhost:3000/api';
     let currentUser = null;
@@ -515,7 +467,6 @@
         'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500'
     ];
 
-    // ==================== HELPERS ====================
     function showToast(msg, type = 'info') {
         const box = document.getElementById('toast-box');
         const el = document.createElement('div');
@@ -538,7 +489,6 @@
         return res.json();
     }
 
-    // ==================== LANDING (your original functions kept) ====================
     function scrollToAuth() { document.getElementById('auth-section').scrollIntoView({ behavior: 'smooth' }); }
 
     function togglePass() {
@@ -583,7 +533,6 @@
         input.classList.remove('is-invalid'); err.style.display = 'none'; return true;
     }
 
-    // LOGIN/REGISTER - now talks to real database
     async function processAuth() {
         if (isLogin) {
             const email = document.getElementById('loginEmail').value.trim();
@@ -624,21 +573,15 @@
             try {
                 const data = await api('/auth/register', 'POST', { first_name: fName, last_name: lName, email, phone, password: pass, role });
                 if (data.success) {
-                    // After successful registration, login automatically
-const autoLogin = await api('/auth/login', 'POST', {
-    email: email,
-    password: pass,
-    role: role
-});
-
-if (autoLogin.success) {
-    currentUser = autoLogin.user;
-    showToast(`Welcome ${currentUser.name}!`, 'success');
-    showDashboardByRole(currentUser.role);
-} else {
-    showToast('Registration successful! Please login.', 'success');
-    toggleAuthMode();
-}
+                    const autoLogin = await api('/auth/login', 'POST', { email: email, password: pass, role: role });
+                    if (autoLogin.success) {
+                        currentUser = autoLogin.user;
+                        showToast(`Welcome ${currentUser.name}!`, 'success');
+                        showDashboardByRole(currentUser.role);
+                    } else {
+                        showToast('Registration successful! Please login.', 'success');
+                        toggleAuthMode();
+                    }
                 } else { showToast(data.message, 'error'); }
             } catch (e) { showToast('Cannot connect to server', 'error'); }
             hideLoader();
@@ -660,7 +603,6 @@ if (autoLogin.success) {
         hideLoader();
     }
 
-    // ==================== ROUTING ====================
     function showDashboardByRole(role) {
         document.getElementById('landing-page').classList.remove('active-section');
         document.getElementById('landing-page').style.display = 'none';
@@ -679,7 +621,6 @@ if (autoLogin.success) {
         }
     }
 
-    // ==================== APPLICANT ====================
     async function initApplicantDash() {
         document.getElementById('app-user-name').textContent = currentUser.name;
         document.getElementById('app-user-email-display').textContent = currentUser.email;
@@ -714,12 +655,12 @@ if (autoLogin.success) {
         container.innerHTML = jobs.map((j, i) => `
             <div class="col-md-4">
                 <div class="job-card">
-                    <img src="${jobImages[i % jobImages.length]}" alt="${j.title}">
+                    <img src="${j.job_image || jobImages[i % jobImages.length]}" alt="${j.title}">
                     <div class="job-card-body">
                         <h6 class="fw-bold mb-1">${j.title}</h6>
                         <p class="text-muted small mb-1">${j.first_name || 'Employer'}</p>
                         <p class="text-success small fw-bold mb-1">${j.salary_range || 'Salary not listed'}</p>
-                        <p class="small mb-3">${getSkillMatch(j.skills_required)}</p>
+                        <p class="small mb-3"></p>
                         <button class="btn-apply" onclick="openJob(${j.id})">Apply & View Details</button>
                     </div>
                 </div>
@@ -735,7 +676,6 @@ if (autoLogin.success) {
         renderJobs(filtered);
     }
 
-    // openJob - your original function name kept, now loads real data
     function openJob(jobId) {
         const job = allJobs.find(j => j.id === jobId);
         if (!job) return;
@@ -746,7 +686,7 @@ if (autoLogin.success) {
         document.getElementById('modalSalary').textContent = '💰 ' + (job.salary_range || 'Not specified');
         document.getElementById('modalDesc').textContent = job.description || 'No description provided.';
         document.getElementById('modalSkills').textContent = job.skills_required || 'Not specified';
-        document.getElementById('modalImg').src = jobImages[allJobs.indexOf(job) % jobImages.length];
+        document.getElementById('modalImg').src = job.job_image || jobImages[allJobs.indexOf(job) % jobImages.length];
         document.getElementById('coverLetter').value = '';
         document.getElementById('resumeFile').value = '';
         jobModalInstance.show();
@@ -789,7 +729,7 @@ if (autoLogin.success) {
                             <h6 class="fw-bold mb-1">${app.title}</h6>
                             <p class="text-muted small mb-0">${app.employer_name} • Applied ${new Date(app.applied_at).toLocaleDateString()}</p>
                         </div>
-                        <span class="status-badge status-${app.status.toLowerCase().replace(' ','-')}" style="background:${colorMap[app.status]}22; color:${colorMap[app.status]}">${app.status}</span>
+                        <span class="status-badge" style="background:${colorMap[app.status]}22; color:${colorMap[app.status]}">${app.status}</span>
                     </div>
                     <div id="thread-${app.id}" style="display:none; padding:15px 20px; background:#f8fafc; border-top:1px solid #e2e8f0;"></div>
                     <div class="message-bar">
@@ -799,14 +739,13 @@ if (autoLogin.success) {
                     </div>
                 </div>
             `).join('');
-            // Auto-load message threads so applicant sees employer messages
-for (const app of data.applications) {
-    const thread = document.getElementById(`thread-${app.id}`);
-    if (thread) {
-        thread.style.display = 'block';
-        await loadThread(app.id, `thread-${app.id}`);
-    }
-}
+            for (const app of data.applications) {
+                const thread = document.getElementById(`thread-${app.id}`);
+                if (thread) {
+                    thread.style.display = 'block';
+                    await loadThread(app.id, `thread-${app.id}`);
+                }
+            }
             const interviews = data.applications.filter(a => a.status === 'Interview').length;
             document.getElementById('reminder-badge').textContent = interviews;
         } catch (e) {
@@ -831,45 +770,37 @@ for (const app of data.applications) {
         else { thread.style.display = 'none'; }
     }
 
-async function loadThread(appId, threadId) {
-    const container = document.getElementById(threadId);
-    if (!container) return;
-
-    try {
-        const data = await api(`/messages/${appId}`);
-        console.log('Messages loaded:', data); // Check browser console
-
-        if (!data.success || !data.messages || !data.messages.length) {
-            container.innerHTML = '<p class="text-muted small text-center">💬 No messages yet</p>';
-            return;
+    async function loadThread(appId, threadId) {
+        const container = document.getElementById(threadId);
+        if (!container) return;
+        try {
+            const data = await api(`/messages/${appId}`);
+            if (!data.success || !data.messages || !data.messages.length) {
+                container.innerHTML = '<p class="text-muted small text-center">💬 No messages yet</p>';
+                return;
+            }
+            container.innerHTML = data.messages.map(m => `
+                <div class="message-bubble ${m.sender_id === currentUser.id ? 'mine' : 'theirs'}">
+                    <small style="opacity:0.6;font-size:10px;">📝 ${m.first_name || 'User'} • ${new Date(m.sent_at).toLocaleString()}</small><br>
+                    ${escapeHtml(m.body)}
+                </div>
+            `).join('');
+            container.scrollTop = container.scrollHeight;
+        } catch (e) {
+            container.innerHTML = '<p class="text-muted small text-center">⚠️ Error loading messages</p>';
         }
-
-        container.innerHTML = data.messages.map(m => `
-            <div class="message-bubble ${m.sender_id === currentUser.id ? 'mine' : 'theirs'}">
-                <small style="opacity:0.6;font-size:10px;">📝 ${m.first_name || 'User'} • ${new Date(m.sent_at).toLocaleString()}</small><br>
-                ${escapeHtml(m.body)}
-            </div>
-        `).join('');
-
-        // Scroll to bottom
-        container.scrollTop = container.scrollHeight;
-
-    } catch (e) {
-        console.error('Load thread error:', e);
-        container.innerHTML = '<p class="text-muted small text-center">⚠️ Error loading messages</p>';
     }
-}
 
-// Add this helper function at the top with other functions
-function escapeHtml(text) {
-    if (!text) return '';
-    return text.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    });
-}
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
     async function loadReminders() {
         const container = document.getElementById('reminders-container');
         try {
@@ -891,7 +822,6 @@ function escapeHtml(text) {
         } catch (e) {}
     }
 
-    // your original tab switcher name kept
     function switchApplicantTab(tabId, el) {
         document.querySelectorAll('#applicant-dash .tab-content').forEach(t => t.classList.remove('active-tab'));
         document.querySelectorAll('#applicant-dash .sidebar-menu li').forEach(li => li.classList.remove('active-link'));
@@ -901,7 +831,6 @@ function escapeHtml(text) {
         if (tabId === 'app-reminders') loadReminders();
     }
 
-    // ==================== EMPLOYER ====================
     async function initEmployerDash() {
         document.getElementById('emp-user-name').textContent = currentUser.name;
         await loadEmployerJobs();
@@ -918,34 +847,32 @@ function escapeHtml(text) {
                 return;
             }
             container.innerHTML = data.jobs.map(job => `
-    <div class="job-card mb-3">
-        <div class="job-header" onclick="toggleFolder('apps-${job.id}')">
-            <div>
-                <h5 class="fw-bold">${job.title} <span class="badge bg-primary-subtle text-primary ms-2" style="font-size:10px;">${job.category}</span></h5>
-                <span class="text-muted small">${job.applicant_count || 0} Applicant(s)</span>
-            </div>
-            <div>
-                <i class="bi bi-trash text-danger me-2" style="cursor:pointer" onclick="event.stopPropagation(); deleteJob(${job.id})"></i>
-                <i class="bi bi-chevron-down text-muted"></i>
-            </div>
-        </div>
-        <div id="apps-${job.id}" style="display:none;"></div>
-    </div>
-`).join('');
+                <div class="job-card mb-3">
+                    <div class="job-header" onclick="toggleFolder('apps-${job.id}')">
+                        <div>
+                            <h5 class="fw-bold">${job.title} <span class="badge bg-primary-subtle text-primary ms-2" style="font-size:10px;">${job.category}</span></h5>
+                            <span class="text-muted small">${job.applicant_count || 0} Applicant(s)</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-trash text-danger me-2" style="cursor:pointer" onclick="event.stopPropagation(); deleteJob(${job.id})"></i>
+                            <i class="bi bi-chevron-down text-muted"></i>
+                        </div>
+                    </div>
+                    <div id="apps-${job.id}" style="display:none;"></div>
+                </div>
+            `).join('');
         } catch (e) {
             hideLoader();
             container.innerHTML = '<div class="empty-state"><i class="bi bi-wifi-off"></i>Server not reachable</div>';
         }
     }
 
-    // your original toggleFolder function kept + enhanced
     async function toggleFolder(id) {
         const el = document.getElementById(id);
         if (!el) return;
         if (el.style.display === 'none' || el.style.display === '') {
             el.style.display = 'block';
             if (!el.innerHTML.trim()) {
-                // Extract job id from container id like "apps-5"
                 const jobId = id.replace('apps-', '');
                 el.innerHTML = '<p class="text-center py-3 text-muted small">Loading applicants...</p>';
                 showLoader();
@@ -972,11 +899,9 @@ function escapeHtml(text) {
                                     <option ${a.status==='Rejected'?'selected':''}>Rejected</option>
                                 </select>
                                 <button class="btn-action btn-shortlist" onclick="shortlist('${a.id}')">Update</button>
-                               ${a.status === 'Interview' ? `
-                                <button class="btn btn-sm btn-outline-info ms-1" onclick="scheduleInterview(${a.id})">Schedule</button>
-                                ` : ''}
-                            </td>
-                        </tr>
+                               ${a.status === 'Interview' ? `<button class="btn btn-sm btn-outline-info ms-1" onclick="scheduleInterview(${a.id})">Schedule</button>` : ''}
+                            <\/td>
+                        <\/tr>
                         <tr id="dm-row-${a.id}" style="display:none;">
                             <td colspan="4">
                                 <div class="dm-box">
@@ -986,10 +911,10 @@ function escapeHtml(text) {
                                         <button class="btn btn-primary btn-sm px-4" onclick="empSendMessage(${a.id})">Send DM</button>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
+                            <\/td>
+                        <\/tr>
                         `).join('')}
-                    </table>`;
+                    <\/table>`;
                 } catch (e) {
                     hideLoader();
                     el.innerHTML = '<p class="text-center py-3 text-danger small">Failed to load</p>';
@@ -1000,7 +925,6 @@ function escapeHtml(text) {
         }
     }
 
-    // your original shortlist function name kept + now saves to database
     async function shortlist(appId) {
         const status = document.getElementById(`status-${appId}`).value;
         showLoader();
@@ -1009,7 +933,6 @@ function escapeHtml(text) {
             hideLoader();
             if (data.success) {
                 showToast(`Status updated to: ${status}`, 'success');
-                // show dm box after shortlisting like your original
                 if (status === 'Shortlisted' || status === 'Interview') {
                     const dmRow = document.getElementById(`dm-row-${appId}`);
                     if (dmRow) dmRow.style.display = 'table-row';
@@ -1020,54 +943,56 @@ function escapeHtml(text) {
         } catch (e) { hideLoader(); showToast('Failed to update', 'error'); }
     }
 
-    // your original viewCV function kept
     function viewCV(name, path) {
         if (path) { window.open(path, '_blank'); }
         else { showToast('No CV uploaded by ' + name, 'info'); }
     }
 
-    // your original sendMessage function name kept
     async function empSendMessage(appId) {
-    const input = document.getElementById(`emp-msg-${appId}`);
-    const body = input.value.trim();
-    if (!body) {
-        showToast('Type a message first', 'error');
-        return;
-    }
-    try {
-        const data = await api('/messages', 'POST', {
-            application_id: appId,
-            sender_id: currentUser.id,
-            body
-        });
-        if (data.success) {
-            input.value = '';
-            showToast('Message sent!', 'success');
-
-            const threadId = `emp-thread-${appId}`;
-            await loadThread(appId, threadId);
-        } else {
-            showToast(data.message || 'Failed to send', 'error');
+        const input = document.getElementById(`emp-msg-${appId}`);
+        const body = input.value.trim();
+        if (!body) {
+            showToast('Type a message first', 'error');
+            return;
         }
-    } catch (e) {
-        showToast('Failed to send message', 'error');
+        try {
+            const data = await api('/messages', 'POST', {
+                application_id: appId,
+                sender_id: currentUser.id,
+                body
+            });
+            if (data.success) {
+                input.value = '';
+                showToast('Message sent!', 'success');
+                const threadId = `emp-thread-${appId}`;
+                await loadThread(appId, threadId);
+            } else {
+                showToast(data.message || 'Failed to send', 'error');
+            }
+        } catch (e) {
+            showToast('Failed to send message', 'error');
+        }
     }
-}
 
     async function postJob() {
         const title = document.getElementById('jobTitle').value.trim();
         const description = document.getElementById('jobDesc').value.trim();
         if (!title || !description) { showToast('Title and description are required', 'error'); return; }
+        
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('category', document.getElementById('jobCategory').value);
+        formData.append('salary_range', document.getElementById('jobSalary').value);
+        formData.append('skills_required', document.getElementById('jobSkills').value);
+        formData.append('description', description);
+        formData.append('employer_id', currentUser.id);
+        
+        const imageFile = document.getElementById('jobImage').files[0];
+        if (imageFile) formData.append('job_image', imageFile);
+        
         showLoader();
         try {
-            const data = await api('/jobs', 'POST', {
-                title,
-                category: document.getElementById('jobCategory').value,
-                salary_range: document.getElementById('jobSalary').value,
-                skills_required: document.getElementById('jobSkills').value,
-                description,
-                employer_id: currentUser.id
-            });
+            const data = await api('/jobs', 'POST', formData, true);
             hideLoader();
             if (data.success) {
                 showToast('Job posted successfully!', 'success');
@@ -1075,13 +1000,13 @@ function escapeHtml(text) {
                 document.getElementById('jobSalary').value = '';
                 document.getElementById('jobSkills').value = '';
                 document.getElementById('jobDesc').value = '';
+                document.getElementById('jobImage').value = '';
                 switchEmployerPage('page-jobs', document.querySelector('.nav-link-custom'));
                 await loadEmployerJobs();
             } else { showToast(data.message, 'error'); }
         } catch (e) { hideLoader(); showToast('Failed to post job', 'error'); }
     }
 
-    // your original switchEmployerPage function kept
     function switchEmployerPage(pageId, navEl) {
         document.querySelectorAll('#employer-dash .page-section').forEach(p => p.classList.remove('active-page'));
         document.querySelectorAll('#employer-dash .nav-link-custom').forEach(l => l.classList.remove('active'));
@@ -1089,7 +1014,6 @@ function escapeHtml(text) {
         if (navEl) navEl.classList.add('active');
     }
 
-    // ==================== ADMIN ====================
     async function initAdminDash() {
         await loadAdminStats();
         loadAdminUsers('applicant');
@@ -1108,58 +1032,58 @@ function escapeHtml(text) {
         } catch (e) { hideLoader(); }
     }
 
-    // your original showAdminList function name kept, now loads real data
     async function loadAdminUsers(role) {
-    const area = document.getElementById('admin-list-area');
-    area.innerHTML = '<div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>';
-    showLoader();
-    try {
-        if (role === 'jobs') {
-            // Load jobs
-            const data = await api('/jobs');
-            hideLoader();
-            if (!data.success || !data.jobs.length) {
-                area.innerHTML = '<div class="empty-state"><i class="bi bi-briefcase"></i>No jobs found</div>';
-                return;
-            }
-            area.innerHTML = `<h5 class="mb-3">All Jobs List</h5>` +
-                data.jobs.map(j => `
-                    <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
-                        <div>
-                            <strong>${j.title}</strong><br>
-                            <small class="text-muted">${j.category || 'No category'} • ${j.salary_range || 'No salary'}</small>
+        const area = document.getElementById('admin-list-area');
+        area.innerHTML = '<div class="empty-state"><i class="bi bi-hourglass-split"></i>Loading...</div>';
+        showLoader();
+        try {
+            if (role === 'jobs') {
+                const data = await api('/jobs');
+                hideLoader();
+                if (!data.success || !data.jobs.length) {
+                    area.innerHTML = '<div class="empty-state"><i class="bi bi-briefcase"></i>No jobs found</div>';
+                    return;
+                }
+                area.innerHTML = `<h5 class="mb-3">All Jobs List</h5>` +
+                    data.jobs.map(j => `
+                        <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
+                            <div>
+                                <strong>${j.title}</strong><br>
+                                <small class="text-muted">${j.category || 'No category'} • ${j.salary_range || 'No salary'}</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info" onclick="showToast('Posted by employer ID: ${j.employer_id}', 'info')">View</button>
                         </div>
-                        <button class="btn btn-sm btn-outline-info" onclick="showToast('Posted by employer ID: ${j.employer_id}', 'info')">View</button>
-                    </div>
-                `).join('');
-        } else {
-            // Load users (applicants or employers)
-            const data = await api(`/admin/users/${role}`);
-            hideLoader();
-            if (!data.success || !data.users.length) {
-                area.innerHTML = `<div class="empty-state"><i class="bi bi-people"></i>No ${role}s found</div>`;
-                return;
-            }
-            area.innerHTML = `<h5 class="mb-3 text-capitalize">${role}s List</h5>` +
-                data.users.map(u => `
-                    <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
-                        <span>${u.first_name} ${u.last_name} <small class="text-muted">(${u.email})</small></span>
-                        <div>
-                            <button class="btn btn-sm btn-outline-warning me-2" onclick="showToast('Warning sent to ${u.first_name}', 'info')">Warn</button>
-                            <button class="btn btn-sm btn-danger" onclick="blockUser(${u.id}, '${role}', '${u.first_name} ${u.last_name}')">Block</button>
+                    `).join('');
+            } else {
+                const data = await api(`/admin/users/${role}`);
+                hideLoader();
+                if (!data.success || !data.users.length) {
+                    area.innerHTML = `<div class="empty-state"><i class="bi bi-people"></i>No ${role}s found</div>`;
+                    return;
+                }
+                area.innerHTML = `<h5 class="mb-3 text-capitalize">${role}s List</h5>` +
+                    data.users.map(u => `
+                        <div class="list-item d-flex justify-content-between align-items-center shadow-sm">
+                            <span>${u.first_name} ${u.last_name} <small class="text-muted">(${u.email})</small>
+                            ${u.is_blocked ? '<span class="badge bg-danger ms-2">Blocked</span>' : ''}</span>
+                            <div>
+                                <button class="btn btn-sm btn-outline-warning me-2" onclick="showToast('Warning sent to ${u.first_name}', 'info')">Warn</button>
+                                ${u.is_blocked ? 
+                                    `<button class="btn btn-sm btn-success" onclick="unblockUser(${u.id}, '${role}')">Unblock</button>` :
+                                    `<button class="btn btn-sm btn-danger" onclick="blockUser(${u.id}, '${role}', '${u.first_name} ${u.last_name}')">Block</button>`
+                                }
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `).join('');
+            }
+        } catch (e) {
+            hideLoader();
+            area.innerHTML = '<div class="empty-state">Error loading</div>';
         }
-    } catch (e) {
-        hideLoader();
-        area.innerHTML = '<div class="empty-state">Error loading</div>';
     }
-}
 
-    // your original blockUser function kept + now saves to database
     async function blockUser(userId, role, name) {
-        if (!confirm(`Remove ${name} permanently?`)) return;
+        if (!confirm(`Block ${name}? They will not be able to login.`)) return;
         showLoader();
         try {
             const data = await api(`/admin/users/${userId}`, 'DELETE');
@@ -1167,14 +1091,27 @@ function escapeHtml(text) {
             if (data.success) {
                 blockedUsers.push(name);
                 updateBlockedUI();
-                showToast('User removed', 'success');
+                showToast('User blocked', 'success');
                 await loadAdminUsers(role);
                 await loadAdminStats();
             } else { showToast(data.message, 'error'); }
         } catch (e) { hideLoader(); showToast('Failed', 'error'); }
     }
 
-    // your original updateBlockedUI function kept
+    async function unblockUser(userId, role) {
+        if (!confirm(`Unblock this user?`)) return;
+        showLoader();
+        try {
+            const data = await api(`/admin/users/unblock/${userId}`, 'PUT');
+            hideLoader();
+            if (data.success) {
+                showToast('User unblocked!', 'success');
+                await loadAdminUsers(role);
+                await loadAdminStats();
+            } else { showToast(data.message, 'error'); }
+        } catch (e) { hideLoader(); showToast('Failed', 'error'); }
+    }
+
     function updateBlockedUI() {
         const list = document.getElementById('blocked-list');
         if (!blockedUsers.length) { list.innerHTML = '<p class="text-muted small">Clean slate.</p>'; return; }
@@ -1186,7 +1123,6 @@ function escapeHtml(text) {
         `).join('');
     }
 
-    // your original unblock function kept
     function unblock(name) { blockedUsers = blockedUsers.filter(u => u !== name); updateBlockedUI(); showToast('User Restored.', 'success'); }
 
     async function loadActivityLogs() {
@@ -1201,7 +1137,6 @@ function escapeHtml(text) {
         } catch (e) { hideLoader(); container.innerHTML = 'Could not load logs.'; }
     }
 
-    // your original switchTabAdmin function kept
     function switchTabAdmin(id, el) {
         document.querySelectorAll('#admin-dash .tab-content').forEach(t => t.classList.remove('active-tab'));
         document.querySelectorAll('#admin-dash .admin-nav-item').forEach(i => i.classList.remove('active'));
@@ -1211,13 +1146,11 @@ function escapeHtml(text) {
         if (id === 'adm-main') loadAdminStats();
     }
 
-    // ==================== INIT ====================
     window.onload = function() {
         document.getElementById('landing-page').style.display = 'block';
         document.getElementById('landing-page').classList.add('active-section');
     };
 
-    // Search listener - your original kept
     document.addEventListener('DOMContentLoaded', function() {
         const searchEl = document.getElementById('jobSearch');
         if (searchEl) {
@@ -1226,4 +1159,4 @@ function escapeHtml(text) {
     });
 </script>
 </body>
-</html>
+</html>N

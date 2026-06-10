@@ -5,7 +5,7 @@ const applicationController = {
     async apply(req, res) {
         try {
             const { job_id, applicant_id, cover_letter } = req.body;
-            const resume_path = req.file ? req.file.path : null;
+            const resume_path = req.file ? '/uploads/' + req.file.filename : null;
             const [existing] = await db.query(
                 'SELECT id FROM applications WHERE job_id = ? AND applicant_id = ?',
                 [job_id, applicant_id]

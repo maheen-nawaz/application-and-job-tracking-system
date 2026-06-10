@@ -36,6 +36,12 @@ const authController = {
                 return res.status(401).json({ success: false, message: 'User not found' });
             }
             const user = users[0];
+
+            // CHECK IF USER IS BLOCKED
+            if (user.is_blocked === 1) {
+                return res.status(401).json({ success: false, message: 'Your account has been blocked. Contact admin.' });
+            }
+
             const passwordMatch = await PasswordUtil.compare(password, user.password);
             if (!passwordMatch) {
                 return res.status(401).json({ success: false, message: 'Incorrect password' });
@@ -71,4 +77,5 @@ const authController = {
         }
     }
 };
+
 module.exports = authController;

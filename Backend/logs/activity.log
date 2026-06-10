@@ -24,3 +24,15 @@
 [2026-05-25T13:09:50.603Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
 [2026-05-25T13:24:43.297Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
 [2026-05-25T14:12:03.704Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-05-25T18:34:02.351Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-05-25T18:34:24.401Z] ACTION: LOGIN | USER: maheenempl@gmail.com | Role: employer
+[2026-05-25T18:34:43.911Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-05-25T18:53:53.580Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-09T19:50:20.211Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-09T19:50:42.927Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T04:26:45.316Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T04:27:26.321Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-10T04:33:24.205Z] ACTION: REGISTER | USER: h@gmail.com | Role: employer
+[2026-06-10T04:33:24.665Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T04:35:10.668Z] ACTION: POST_JOB | USER: employer_6 | Job: Graphic Designer
+[2026-06-10T04:35:47.790Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant

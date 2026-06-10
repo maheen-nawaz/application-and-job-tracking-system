@@ -1,0 +1,21 @@
+[2026-06-10T05:13:59.458Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T05:14:04.070Z] ACTION: APPLY | USER: applicant_5 | Job ID: 3
+[2026-06-10T05:14:26.161Z] ACTION: APPLY | USER: applicant_5 | Job ID: 1
+[2026-06-10T05:15:35.863Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T05:18:13.699Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T07:06:14.741Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-10T07:06:36.037Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T07:07:55.864Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T07:09:31.920Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T07:10:56.293Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T07:11:36.518Z] ACTION: POST_JOB | USER: employer_6 | Job: coding
+[2026-06-10T17:06:53.545Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-10T17:08:56.165Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T17:11:46.624Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T17:12:09.541Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T17:16:35.671Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T17:17:24.902Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-10T18:21:41.803Z] ACTION: LOGIN | USER: h@gmail.com | Role: employer
+[2026-06-10T18:23:28.500Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
+[2026-06-10T18:23:55.686Z] ACTION: ADMIN_LOGIN | USER: admin | Admin panel accessed
+[2026-06-10T18:24:26.976Z] ACTION: LOGIN | USER: m@gmail.com | Role: applicant
